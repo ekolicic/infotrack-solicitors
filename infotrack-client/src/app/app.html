@@ -1,1 +1,108 @@
-<h1>The Infotrack Client</h1>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <span class="brand-name">InfoTrack</span>
+      <span class="brand-tagline">Solicitor Search</span>
+    </div>
+    
+  </div>
+</header>
+
+<main id="main-content" class="main-content">
+  <div class="container">
+
+    <section class="search-section" aria-labelledby="search-heading">
+      <h1 id="search-heading" class="page-title">Find Conveyancing Solicitors</h1>
+      <p class="page-subtitle">
+        Search verified solicitors by location. Results are cached per location and refreshed on demand.
+      </p>
+
+      <div class="search-card" role="search" aria-label="Solicitor search">
+        <div class="search-row">
+          <label class="field-label" id="location-label">Locations</label>
+          <it-location-picker
+            [locations]="availableLocations()"
+            [selected]="selectedLocations()"
+            [loading]="locationsLoading() || isLoading()"
+            (selectionChange)="onLocationsChange($event)"
+            (locationAdded)="onLocationAdded($event)"
+            aria-labelledby="location-label" />
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            [disabled]="!canSearch()"
+            [attr.aria-busy]="isLoading()"
+            aria-label="Search for solicitors in selected locations"
+            (click)="onSearch()">
+            @if (isLoading()) {
+              <span class="spinner" aria-hidden="true"></span>
+              Searching…
+            } @else {
+              Search
+            }
+          </button>
+
+          @if (hasResults()) {
+            <button
+              type="button"
+              class="btn btn-secondary"
+              [disabled]="isLoading()"
+              aria-label="Refresh results, bypassing cache"
+              (click)="onRefresh()">
+              Refresh
+            </button>
+          }
+        </div>
+
+        @if (selectedLocations().length === 0) {
+          <p class="hint-text" role="note" aria-live="polite">
+            Select one or more locations to begin your search.
+          </p>
+        }
+      </div>
+    </section>
+
+    @if (state() === 'loading') {
+      <div class="status-banner info" role="status" aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        Scraping solicitors.com for <strong>{{ selectedLocations().join(', ') }}</strong>…
+      </div>
+    }
+
+    @if (state() === 'error') {
+      <div class="status-banner error" role="alert" aria-live="assertive">
+        {{ errorMessage() }}
+      </div>
+    }
+
+    @if (state() === 'success' && results().length === 0) {
+      <div class="status-banner warning" role="status" aria-live="polite">
+        No solicitors found for the selected locations.
+      </div>
+    }
+
+    @if (hasResults() && state() !== 'loading') {
+      <div class="results-meta" aria-live="polite">
+        <span class="meta-text">
+          Last updated: <time [dateTime]="lastSearchedAt()?.toISOString() ?? ''">
+            {{ lastSearchedLabel() }}
+          </time>
+        </span>
+      </div>
+      <it-results-view [results]="results()" />
+    }
+
+  </div>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <p>
+      Data sourced from
+      <a href="https://www.solicitors.com/conveyancing.html" target="_blank" rel="noopener noreferrer">solicitors.com</a>
+    </p>
+  </div>
+</footer>

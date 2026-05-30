@@ -1,0 +1,149 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.sort-label { font-size: 0.87rem; font-weight: 600; color: #475467; }
+
+.sort-select {
+  padding: 0.4rem 0.75rem;
+  border: 1.5px solid #d0d5dd;
+  border-radius: 6px;
+  font-size: 0.87rem;
+  color: #344054;
+  background: #fff;
+  cursor: pointer;
+}
+.sort-select:focus { outline: none; border-color: #00838f; box-shadow: 0 0 0 3px rgba(0,131,143,0.15); }
+
+.sort-dir-btn {
+  padding: 0.4rem 0.85rem;
+  border: 1.5px solid #d0d5dd;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #344054;
+  background: #fff;
+  cursor: pointer;
+}
+.sort-dir-btn:hover { background: #f9fafb; border-color: #00838f; color: #00838f; }
+
+/* Table */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e4e7ec;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.results-table thead tr {
+  background: #f8fafb;
+  border-bottom: 2px solid #e4e7ec;
+}
+
+.results-table th {
+  padding: 0.7rem 1rem;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #667085;
+  white-space: nowrap;
+}
+
+.results-table tbody tr {
+  border-bottom: 1px solid #f2f4f7;
+  transition: background 0.12s;
+}
+.results-table tbody tr:last-child { border-bottom: none; }
+.results-table tbody tr:nth-child(even) { background: #f8fafb; }
+.results-table tbody tr:hover { background: #edf8fa; }
+
+.results-table td {
+  padding: 0.65rem 1rem;
+  vertical-align: middle;
+  color: #344054;
+}
+
+.col-name { font-weight: 600; min-width: 180px; }
+.col-name a { color: #00838f; text-decoration: none; }
+.col-name a:hover { text-decoration: underline; }
+
+.col-address { min-width: 200px; max-width: 280px; }
+.col-address a { color: #475467; text-decoration: none; font-size: 0.85rem; }
+.col-address a:hover { color: #00838f; text-decoration: underline; }
+
+.col-tel a { color: #344054; text-decoration: none; white-space: nowrap; }
+.col-tel a:hover { color: #00838f; }
+
+.col-rating { white-space: nowrap; }
+
+/* Stars (same as card) */
+.stars { display: inline-flex; align-items: center; gap: 1px; vertical-align: middle; }
+.star { position: relative; display: inline-block; width: 1em; height: 1em; font-size: 0.9rem; line-height: 1; }
+.star::before { content: '★'; color: #d1d5db; }
+.star-full::before  { color: #f59e0b; }
+.star-empty::before { color: #d1d5db; }
+.star-half::before  { color: #d1d5db; }
+.star-half::after   { content: '★'; color: #f59e0b; position: absolute; left: 0; top: 0; width: 50%; overflow: hidden; white-space: nowrap; }
+
+.rating-val { font-size: 0.8rem; font-weight: 600; color: #667085; margin-left: 0.3rem; vertical-align: middle; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+/* Accordion */
+.accordion { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.accordion-item {
+  border: 1.5px solid #e4e7ec;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.25rem;
+  background: #f8fafb;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+.accordion-header:hover { background: #edf8fa; }
+.accordion-header:focus-visible { outline: 3px solid #00838f; outline-offset: -3px; }
+
+.acc-left { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.acc-location { font-size: 1rem; font-weight: 700; color: #1d2939; }
+.acc-count { font-size: 0.8rem; color: #667085; background: #f2f4f7; padding: 0.15rem 0.5rem; border-radius: 20px; }
+
+.acc-chevron { color: #667085; font-size: 1rem; transition: transform 0.2s; }
+.acc-chevron.open { transform: rotate(180deg); }
+
+.accordion-panel {
+  border-top: 1px solid #e4e7ec;
+  animation: slideDown 0.18s ease;
+}
+
+.location-error {
+  padding: 0.85rem 1.25rem;
+  color: #b42318;
+  font-size: 0.88rem;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
