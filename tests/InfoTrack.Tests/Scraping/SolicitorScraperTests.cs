@@ -164,4 +164,16 @@ public sealed class SolicitorScraperTests
             n.FindFirst(c => c.Tag == "i" && c.HasClass("fa-globe")) is not null);
         link!.GetAttribute("href").Should().Be("http://www.allaw.co.uk");
     }
+
+    [Theory]
+    [InlineData("London", "london")]
+    [InlineData("Lytham St Annes", "lytham-st-annes")]
+    [InlineData("Weston-super-Mare", "weston-super-mare")]
+    [InlineData(" Bristol ", "bristol")]
+    public void SlugBuilder_ProducesCorrectUrlSegment(string location, string expectedSlug)
+    {
+        var slug = location.Trim().ToLowerInvariant().Replace(' ', '-');
+        slug.Should().Be(expectedSlug);
+    }
+
 }

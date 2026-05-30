@@ -48,7 +48,10 @@ public sealed class SolicitorScraper : ISolicitorScraper
     }
 
     internal static string BuildSlug(string location) =>
-        location.Trim().ToLowerInvariant();
+        System.Text.RegularExpressions.Regex
+            .Replace(location.Trim().ToLowerInvariant(), @"[^a-z0-9\-]", "-")
+            .Replace("--", "-")
+            .Trim('-');
 
     private static IReadOnlyList<Solicitor> ParseResults(string html, string location)
     {
