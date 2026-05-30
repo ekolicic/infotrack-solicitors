@@ -56,6 +56,9 @@ public sealed class SolicitorsController : Controller
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public IActionResult InvalidateCache(string location)
     {
+        if (string.IsNullOrWhiteSpace(location))
+            return BadRequest(new { error = "Location is required." });
+
         _repository.InvalidateCache(location);
         return NoContent();
     }
