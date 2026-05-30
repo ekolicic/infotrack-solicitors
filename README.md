@@ -26,7 +26,7 @@ Results are cached per location for 24 hours. Passing `?refresh=true` forces a r
 
 ## Prerequisites
 
-- [.NET 9 SDK](https://dotnet.microsoft.com/download)
+- [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-9.0.16-windows-x64-installer?cid=getdotnetcore)
 - [Node.js 20+](https://nodejs.org/)
 - Angular CLI 21: `npm install -g @angular/cli`
 
