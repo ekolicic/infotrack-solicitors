@@ -18,7 +18,7 @@ import { StatSummaryComponent } from '../stat-summary/stat-summary';
                 aria-label="Sort field">
           <option value="name">Name</option>
           <option value="starRating">Rating</option>
-          <option value="reviewCount">Reviews</option>
+          <!-- <option value="reviewCount">Reviews</option> -->
         </select>
         <button type="button" class="sort-dir-btn"
                 [attr.aria-label]="'Sort direction: ' + (sortDir() === 'asc' ? 'ascending' : 'descending')"
